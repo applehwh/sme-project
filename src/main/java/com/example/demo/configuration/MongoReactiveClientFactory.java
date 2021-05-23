@@ -13,20 +13,20 @@ import java.util.Arrays;
 @Configuration
 public class MongoReactiveClientFactory  extends AbstractReactiveMongoConfiguration {
     @Autowired
-    private MongoProperties mongo;
+    private MongoProperties mongoProperties;
 
 
     @Override
     protected void configureClientSettings(MongoClientSettings.Builder builder) {
         builder
-                .credential(MongoCredential.createCredential(mongo.getUsername(), mongo.getDatabase(), mongo.getPassword()))
+                .credential(MongoCredential.createCredential(mongoProperties.getUsername(), mongoProperties.getDatabase(), mongoProperties.getPassword()))
                 .applyToClusterSettings(settings  -> {
-                    settings.hosts(Arrays.asList(new ServerAddress(mongo.getHost(), mongo.getPort())));
+                    settings.hosts(Arrays.asList(new ServerAddress(mongoProperties.getHost(), mongoProperties.getPort())));
                 });
     }
 
     @Override
     protected String getDatabaseName() {
-        return mongo.getDatabase();
+        return mongoProperties.getDatabase();
     }
 }

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: sme-gate-way      #注册中心显示的服务名
+  rabbitmq:
+      addresses: 192.168.0.107:5672
+      username: admin
+      password: admin
+      virtual-host: admin
+  data :
+    mongodb:
+      host: 192.168.0.107
+      port: 27017
+      database: admin
+      username: admin
+      password: admin
